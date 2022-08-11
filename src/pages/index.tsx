@@ -18,6 +18,7 @@ const Home: NextPage = () => {
 
   if (status === "authenticated") {
     router.push('dashboard')
+
   }
   return (
     <>
@@ -31,8 +32,8 @@ const Home: NextPage = () => {
         <h1>
           Welcome to the Wild File -- the management system for tool to enjoy the wild
         </h1>
-        <button onClick={() => signIn()}>
-          Sign in
+        <button onClick={() => signIn("google", { callbackUrl: '/dashboard'})}>
+          Sign in with Google
         </button>
       </main>
     </>
