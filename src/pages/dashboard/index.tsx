@@ -6,7 +6,7 @@ const Dashboard: NextPage = () => {
   return (
     <>
          <h1>
-         Dashboard
+         Dashboard display
         </h1>
     </>
   );
