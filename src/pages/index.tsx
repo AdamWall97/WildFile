@@ -15,11 +15,12 @@ const Home: NextPage = () => {
  
   const { data: session, status} = useSession();
   const router = useRouter();
-
+  
+  
   if (status === "authenticated") {
     router.push('dashboard')
-
   }
+  
   return (
     <>
       <Head>
@@ -32,7 +33,8 @@ const Home: NextPage = () => {
         <h1>
           Welcome to the Wild File -- the management system for tool to enjoy the wild
         </h1>
-        <button onClick={() => signIn("google")}>
+        <button onClick={() => signIn("google",{
+        callbackUrl: `${window.location.origin}/dashboard`})}>
           Sign in with Google
         </button>
       </main>
