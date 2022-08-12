@@ -32,7 +32,7 @@ const Home: NextPage = () => {
         <h1>
           Welcome to the Wild File -- the management system for tool to enjoy the wild
         </h1>
-        <button onClick={() => signIn("google", { callbackUrl: '/dashboard'})}>
+        <button onClick={() => signIn("google")}>
           Sign in with Google
         </button>
       </main>

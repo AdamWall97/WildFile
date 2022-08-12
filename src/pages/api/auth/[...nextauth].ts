@@ -9,9 +9,7 @@ import { env } from "../../../env/server.mjs";
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
-    session({ session, user }) {
-      console.log(session.user);
-      
+    session({ session, user }) {      
       if (session.user) {
         session.user.id = user.id;
       }
@@ -19,6 +17,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
   // Configure one or more authentication providers
+
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
@@ -27,6 +26,7 @@ export const authOptions: NextAuthOptions = {
     }),
     // ...add more providers here
   ],
+  secret: env.NEXTAUTH_SECRET,
 };
 
 export default NextAuth(authOptions);
