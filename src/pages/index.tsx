@@ -1,45 +1,60 @@
-import type { NextPage } from "next";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Head from "next/head";
-import { useRouter } from "next/router";
+import type { GetServerSideProps, GetServerSidePropsContext, InferGetStaticPropsType, NextPage } from "next";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
+import router, { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Header from '../components/Header';
+import { GetStaticProps } from 'next'
+import { Session } from "next-auth";
+import { unstable_getServerSession } from "next-auth/next"
+import {authOptions} from './api/auth/[...nextauth]';
+import SideBar from "../components/SideBar";
 import { trpc } from "../utils/trpc";
 
 
-type TechnologyCardProps = {
-  name: string;
-  description: string;
-  documentation: string;
-};
+//Auth
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext)  => {
+  //return user info
+  const session = await unstable_getServerSession(context.req,context.res,authOptions);
+ 
+  if (!session) {
+    return {
+      redirect: {
+        destination:"/login",
+        permanent: false
+      },
+    }
+  }
+  return {props: {session}}
+}
 
 const Home: NextPage = () => {
- 
-  const { data: session, status} = useSession();
-  const router = useRouter();
-  
-  
-  if (status === "authenticated") {
-    router.push('dashboard')
-  }
-  
-  return (
-    <>
-      <Head>
-        <title>Wild File</title>
-        <meta name="description" content="Wild File App" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
-      <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
-        <h1>
-          Welcome to the Wild File -- the management system for tool to enjoy the wild
-        </h1>
-        <button onClick={() => signIn("google",{
-        callbackUrl: `${window.location.origin}/dashboard`})}>
-          Sign in with Google
-        </button>
-      </main>
-    </>
-  );
+  const [showSide, setshowSide] = useState(true);
+  const {data: session, status} = useSession();
+  if (!session) {
+    const Trips = trpc.useQuery(["user.getTrips", session.user?.id]);
+  }
+
+    return (
+      <>
+           <Header cur={showSide} setcur={setshowSide}/>
+           {(showSide) ? 
+           <SideBar /> : 
+           null
+           }
+
+
+      </>
+    );
+  
+return (
+  <>
+  loading...
+  </>
+)
 };
+
+
+
 
 export default Home;
