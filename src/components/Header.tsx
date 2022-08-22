@@ -13,8 +13,6 @@ type SideBar = {
 const Header = ({setcur,cur}: SideBar) => {
     const {data: session, status} = useSession();
 
-
-  
 return (
     <div className="w-full h-1/6 flex flex-row">
     <button onClick={() => setcur(!cur)}>
