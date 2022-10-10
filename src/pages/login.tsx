@@ -38,7 +38,6 @@ const Login: NextPage = () => {
   
     
   }, [slider]);
-
   return (
     <>
       <Head>
