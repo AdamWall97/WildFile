@@ -15,9 +15,7 @@ const Header = ({setcur,cur}: SideBar) => {
 
 return (
     <div className="w-full h-1/6 flex flex-row">
-    <button onClick={() => setcur(!cur)}>
-    Show Sidebar
-    </button>
+    <div>
     <Link href="/">
         <>
             <Image src="/Logo.svg" alt="logo" width={50} height={50}/>
@@ -33,9 +31,14 @@ return (
     : 
         <div>Loading...</div>}
    
-    <button onClick={()=> signOut()}>
-        Log out
+    <button className= "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={()=> signOut()}>
+        Sign out
     </button>
+    </div>
+    <button onClick={() => setcur(!cur)}>
+    Show Sidebar
+    </button>
+
     </div>
 )
 
