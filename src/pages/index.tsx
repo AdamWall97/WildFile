@@ -31,7 +31,7 @@ const Home: NextPage = () => {
 
   const [showSide, setshowSide] = useState(true);
   const {data: session, status} = useSession();
-  if (!session) {
+  if (session) {
     const Trips = trpc.useQuery(["user.getTrips", session.user?.id]);
   
 

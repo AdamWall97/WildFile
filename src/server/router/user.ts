@@ -4,7 +4,7 @@ import { z } from "zod";
 // Example router with queries that can only be hit if the user requesting is signed in
 export const userProtectedRouter = createProtectedRouter()
     .query("getTrips",{
-    input: z.string(),
+    input: z.string().optional(),
     resolve: async ({ input, ctx }) => {
         return await ctx.prisma.user.findUnique({
             where: {
