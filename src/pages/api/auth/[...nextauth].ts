@@ -19,6 +19,7 @@ export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
   secret: env.NEXTAUTH_SECRET,
+  debug: true,
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,

@@ -33,7 +33,7 @@ const Home: NextPage = () => {
   const {data: session, status} = useSession();
   if (!session) {
     const Trips = trpc.useQuery(["user.getTrips", session.user?.id]);
-  }
+  
 
     return (
       <>
@@ -46,15 +46,13 @@ const Home: NextPage = () => {
 
       </>
     );
-  
+  }
 return (
   <>
   loading...
   </>
 )
 };
-
-
 
 
 export default Home;
