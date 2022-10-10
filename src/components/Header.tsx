@@ -28,7 +28,6 @@ return (
         <Link href={`/profile/${session.user?.id}`}>
             <>
                 <div>Welcome {session.user?.name}</div>
-                <Image src={session.user?.image} alt="Picture of user" width={50} height={50}/>
             </>
         </Link>
     : 
