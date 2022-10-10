@@ -11,8 +11,7 @@ type SideBar = {
 }
 
 const Header = ({setcur,cur}: SideBar) => {
-    const {data: session, status} = useSession();
-
+    const {data: session} = useSession();
 return (
     <div className="w-full h-1/6 flex flex-row">
     <div>
@@ -23,7 +22,7 @@ return (
         </div>
     </Link>
     {(session) ?
-        <ul className="fle2">
+        <ul className="flex">
           <li>
               <Link href="/create" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                  <span className="ml-3"> Create Trip </span>
@@ -48,9 +47,6 @@ return (
         Sign out
     </button>
     </div>
-    <button onClick={() => setcur(!cur)}>
-    Show Sidebar
-    </button>
     </div>
 )
 
