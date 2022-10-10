@@ -34,14 +34,10 @@ const Home: NextPage = () => {
   if (session) {
     const Trips = trpc.useQuery(["user.getTrips", session.user?.id]);
   
-
     return (
       <>
            <Header cur={showSide} setcur={setshowSide}/>
-           {(showSide) ? 
-           <SideBar /> : 
-           null
-           }
+         
 
 
       </>
