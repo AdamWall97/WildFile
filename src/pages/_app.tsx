@@ -5,13 +5,17 @@ import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
+import { Session } from "next-auth";
+import type { AppProps } from "next/app";
 
-const MyApp: AppType = ({
+function MyApp({
   Component,
-  pageProps: { session, ...pageProps },
-}) => {
-  return (
-    <SessionProvider session={session}>
+  pageProps,
+}: AppProps<{
+  session: Session;
+}>) {
+    return (
+    <SessionProvider session={pageProps.session}>
       <Component {...pageProps} />
     </SessionProvider>
   );
